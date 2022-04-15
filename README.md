@@ -269,3 +269,67 @@ Every function call must have your time computed separately, starting from the o
 <img src="./resources/execution-time-analysis-big-o.png"></img>
 
 <img src="./resources/execution-time-analysis-big-o-2.png"></img>
+
+## Recursive Algorithm Analysis
+
+An algorithm is recursive when the procedure call itself.
+
+### Recursive function structure
+
+Usually, the recursive functions are divided into two parts:
+
+- Recursive call.
+
+- Stop condition.
+
+The stop condition is essential to avoid executing infinite loops. The recursive call can be:
+
+- **Direct:** The function A calls itself.
+
+- **Indirect:** The function A calls B and B calls A again.
+
+The recursive call can happen more than one time inside the function.
+
+#### Example: Fibonacci
+
+- Complexity: Exponential
+
+```c
+int Fib(int n) {
+	if (n < 3) {
+		return 1;
+	} else {
+		return Fib(n-1) + Fib(n-2);
+	}
+}
+```
+
+- Complexity: O(n)
+
+```c
+int FibIter(int n) {
+	int fn1 = 1, fn2 = 1;
+	int fn, i;
+
+	if (n < 3) {
+		return 1
+	};
+
+	for (i = 3; i <= n; i++) {
+		fn = fn2 + fn1;
+		fn2 = fn1;
+		fn1 = fn;
+	}
+
+	return fn;
+} 
+```
+
+Most of the time recursiveness has a high cost, so try to think if it is possible to do that in an iterative way.
+
+When we are dealing with complex algorithms, which iterative implementation is complex and usually requires a explicit use of a stack.
+
+- Tree paths.
+
+- Divide and Conquer (Ex: Quicksort).
+
