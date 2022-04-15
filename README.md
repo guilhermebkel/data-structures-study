@@ -131,3 +131,103 @@ int searchIndex (Store *A, int n, int key) {
 When we compare algorithms of the same class, sometimes we are able to understand what is the limit inferior of that class.
 
 The limit inferior shows us the better complexity function that can be found for an algorithms class.
+
+## Asymptotic Complexity
+
+It is important to study the algorithm cost for big values of **n** (n → ∞).
+
+We call asymptotic complexity analysis, when we analysis the algorithm when the value of **n** tends to infinity.
+
+In that case, we do not need to worry about constants and terms of less growing.
+
+### Asymptotic Dominance
+
+A function **f(n)** dominates asymptotically a function **g(n)** if there are two positive constants **c** and **m** for **n >= m**, we have **|g(n)|<= c|f(n)|**.
+
+<img src="./resources/asymptotic-dominance.png"></img>
+
+### Asymptotic Notations
+
+#### O (Big-O)
+
+Specifies the limit superior for **g(n)** (the worst case).
+
+**g(n) = O(f(n))** if **f(n)** dominates asymptotically **g(n)**.
+
+**g(n) is order of f(n)**, or **O of f(n)**.
+
+<img src="./resources/big-o.png"></img>
+
+- Useful operations:
+
+<img src="./resources/big-o-operations.png"></img>
+
+- Example:
+
+<img src="./resources/big-o-example-1.png"></img>
+
+#### Ω (Big-Omega)
+
+Specifies the limit inferior for g(n).
+
+A function **g(n)** is **Ω(f(n))** if there are two constants **c** and **m** in which **g(n) >= cf(n)** for each **n >= m**.
+
+<img src="./resources/big-omega.png"></img>
+
+#### Θ (Big-Theta)
+
+A function **g(n)** is **Θ(f(n))** if there are positive constants **c1, c2 and m** in which **0 <= c1f(n) <= g(n) <= c2f(n)** for every **n >= m**.
+
+<img src="./resources/big-theta.png"></img>
+
+For every **n >= m**, the function **g(n)** is equal **f(n)**.
+
+### Asymptotic Class Behavior
+
+In general, it is interesting to group algorithms and problems by asymptotic behavior class, that determines the inherit complexity of the algorithm.
+
+When two algorithms have the same asymptotic behavior class, we call them equivalent (in that case, we need to make a better analysis of the complexity function or its performance in real systems).
+
+#### f(n) = O(1): Constant Complexity
+
+The algorithms is not dependent of **n**.
+
+The algorithm instructions are executed a fixed number of times.
+
+#### f(n) = O(log n): Logarithm Complexity
+
+Usually algorithms that turns a problem into smaller problems.
+
+#### f(n) = O(n): Linear Complexity
+
+In general, a small work is done in every element of the input.
+
+Everytime **n** doubles its size, the time of execution gets doubled as well.
+
+#### f(n) = O(n log n)
+
+Usually algorithms that break problems in smaller ones, and so, solve each one independently and making the solution adjustments later.
+
+#### f(n) = O(n²): Quadratic Complexity
+
+Usually when the input data is processed in pairs, per example doing a loop inside another.
+
+#### f(n) = O(n³): Cubic Complexity
+
+Useful to solve smaller problems.
+
+#### f(n) = O(2^n): Exponential Complexity
+
+Usually are not useful at a practical sight of view.
+
+Happens when we try to solve problems by brute force.
+
+#### f(n) = O(n!)
+
+An algorithm of complexity O(n!) is called to have exponential complexity, even being too much worse than **O(2^n)**.
+
+Happens when we try to solve problems by brute force.
+
+### Asymptotic Class Behavior Comparison
+
+<img src="./resources/complexity-comparison.png"></img>
