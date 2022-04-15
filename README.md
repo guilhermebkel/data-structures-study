@@ -102,11 +102,11 @@ In some algorithms, the execution cost depends on the data organization as well.
 
 #### Example: Sequential search (each record has an unique key).
 
-The **best case** is when the record is the first one read.
+The **best case** is when the record is the first one read: **F(n) = 1**.
 
-The **worst case** is when the record is the last one read or it is not even on the store.
+The **worst case** is when the record is the last one read or it is not even on the store: **F(n) = n**.
 
-The **average case** is when the record is in the middle of the store.
+The **average case** is when the record is in the middle of the store: **F(n) = (n + 1) / 2**.
 
 ```c
 int searchIndex (Store *A, int n, int key) {
