@@ -231,3 +231,41 @@ Happens when we try to solve problems by brute force.
 ### Asymptotic Class Behavior Comparison
 
 <img src="./resources/complexity-comparison.png"></img>
+
+## Analysis Techniques
+
+Determining the complexity function of a time of execution of some program can be a hard mathematical problem. Instead, determining the complexity order, without any worry about the constant value can be an easier task.
+
+### Execution Time Analysis
+
+Generally we consider an allocation, reading or writing to be **O(1)**.
+
+```c
+a = 0;
+
+v[0] = 12;
+
+b = a + 1;
+
+return b;
+```
+
+Command time inside a conditional, more time to evaluate a condition, in general is **O(1)**.
+
+That way, if the complexity of commands is different in case the condition if **T** or **F**, we can have a best and worst case.
+
+```c
+if (A[j] < A[min]) {
+	min = j;
+} else {
+	return min;
+}
+```
+
+Every function call must have your time computed separately, starting from the ones that do not call another procedures.
+
+#### Example 
+
+<img src="./resources/execution-time-analysis-big-o.png"></img>
+
+<img src="./resources/execution-time-analysis-big-o-2.png"></img>
