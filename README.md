@@ -312,8 +312,8 @@ int FibIter(int n) {
 	int fn, i;
 
 	if (n < 3) {
-		return 1
-	};
+		return 1;
+	}
 
 	for (i = 3; i <= n; i++) {
 		fn = fn2 + fn1;
