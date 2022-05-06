@@ -509,7 +509,7 @@ Then <img src="https://render.githubusercontent.com/render/math?math=f(n)" > is 
 
 #### General Concepts
 
-- **Intuition:** The function <img src="https://render.githubusercontent.com/render/math?math=f(n" > is compared with <img src="https://render.githubusercontent.com/render/math?math=n^{log_{b}a}" > and the bigger of the functions is the solution of the recurrence. In case the two functions are equivalent, the solution is <img src="https://render.githubusercontent.com/render/math?math=n^{log_{b}a}" > times a logarithmic factor.
+- **Intuition:** The function <img src="https://render.githubusercontent.com/render/math?math=f(n)" > is compared with <img src="https://render.githubusercontent.com/render/math?math=n^{log_{b}a}" > and the bigger of the functions is the solution of the recurrence. In case the two functions are equivalent, the solution is <img src="https://render.githubusercontent.com/render/math?math=n^{log_{b}a}" > times a logarithmic factor.
 
 - **Details:** In the cases 1 and 3, the function f(n) must be polynomically smaller/bigger than <img src="https://render.githubusercontent.com/render/math?math=n^{log_{b}a}" >. Besides, the function must satisfy a regularity condition.
 
