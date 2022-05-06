@@ -333,3 +333,234 @@ When we are dealing with complex algorithms, which iterative implementation is c
 
 - Divide and Conquer (Ex: Quicksort).
 
+When making an analysis of a recursive algorithm, we need to use a Recurrence Equation.
+
+### Recurrence Equation
+
+It is a way to define a function by an expression revolving around the same function with small imputs.
+
+The recurrence equation is divided into two parts:
+
+- **Base case:** the one the equation has one solution for a given input value.
+
+- **Recurrence:** the one the equation solution for a input n is expressed in a function of the solution for small inputs.
+
+#### Example: Generic Function
+
+```
+T(n) = T(n - 1) + n, for n > 1
+T(n) = 1, for n ≤ 1
+```
+
+```
+T(1) = 1
+T(2) = T(1) + 2 = 3
+T(3) = T(2) + 3 = 6
+T(4) = T(3) + 4 = 10
+...
+```
+
+#### Example: Factorial
+
+- Algorithm:
+
+```c
+int fat (int n) {
+	if (n <= 0) {
+		return 1;
+	} else {
+	 	return n * fat(n-1);
+	}
+}
+```
+
+- Recurrence Equation:
+
+```
+T(n) = 1 + T(n - 1), for n > 0
+T(n) = 0, for n ≤ 0
+```
+
+#### Example: Fibonacci
+
+- Algorithm:
+
+```c
+int Fib(int n) {
+	if (n < 3) {
+		return 1;
+	} else {
+		return Fib(n-1) + Fib(n-2);
+	}
+}
+```
+
+- Recurrence Equation:
+
+```
+T(n) = T(n - 1) + T(n - 2) + c, for n > 2
+T(n) = d, for n ≤ 2
+
+where c and d are constants
+```
+
+Being minded about it, how do we solve the recurrence equations to find the complexity?
+
+### Terms Expansion
+
+- In a given recurrence, expand the terms to obtain terms with smaller input.
+
+- Repeat the process until you get to the base case.
+
+- Replace the values with the smaller input terms already found.
+
+- Sum the costs of all the terms.
+
+- Calculate the summation formula.
+
+#### Factorial
+
+- Algorithm:
+
+```c
+int fat (int n) {
+	if (n <= 0) {
+		return 1;
+	} else {
+	 	return n * fat(n-1);
+	}
+}
+```
+
+- Recurrence Equation:
+
+```
+T(n) = c + T(n - 1), for n > 0
+T(n) = 0, for n ≤ 0
+```
+
+- Equation Solving:
+
+```
+T(n) = c + T(n-1)
+T(n-1) = c + T(n-2)
+T(n-2) = c + T(n-3)
+...
+T(1) = c + T(0)
+T(0) = d
+```
+
+- Complexity Analysis:
+
+```
+T(n) = c + c + c + c + ... + c + d
+
+T(n) = n * c + d
+
+O(n)
+```
+
+We will find that the complexity of a recursive factorial algorithm is the same as the iterative version, that is **O(n)**.
+
+So, let's take a look at what happens to the its spatial complexity on the recursive version.
+
+Since the recursive version only returns all the functions in case the latest one called reaches a stop condition, we will find that the spatial complexity of a recursive factorial algorithm is **O(n)** since the stack execution of functions has the same size of the times the function is called.
+
+### Master Theorem
+
+This is the easiest way to solve recurrences of type:
+
+```
+T(n) = aT(n/b) + f(n)
+
+where a ≥ 1, b > 1 and f(n) is positive
+```
+
+This kind of recurrence is usually used by algorithms with "divide and conquer" approach.
+
+- Divides the problem in a sub-problems.
+- Each sub-problem has a size of n/b.
+- Each call does a job of cost f(n).
+- The base case, usually omit, has a cost constant for a small n value: **T(n) = c, n < k**.
+
+```
+T(n) = aT(n/b) + f(n)
+```
+
+Compares the function <img src="https://render.githubusercontent.com/render/math?math=f(n" > with the term <img src="https://render.githubusercontent.com/render/math?math=n^{log_{b}a}" >.
+
+**Obs:** It must satisfy the Regularity Condition: <img src="https://render.githubusercontent.com/render/math?math=af(n/b)\leq cf(n), c<1, n>n_{0}" >
+
+#### Case 1
+
+If <img src="https://render.githubusercontent.com/render/math?math=f(n) = O(n^{log_{b}a-\varepsilon }) \rightarrow T(n) = \Theta (n^{log_{b}a})" >.
+
+Then <img src="https://render.githubusercontent.com/render/math?math=f(n)" > is polynomically smaller than <img src="https://render.githubusercontent.com/render/math?math=n^{log_{b}a}" >.
+
+#### Case 2
+
+If <img src="https://render.githubusercontent.com/render/math?math=f(n) = \Theta(n^{log_{b}a}) \rightarrow T(n) = \Theta (n^{log_{b}a} * log_{.}n)" >.
+
+#### Case 3
+
+If <img src="https://render.githubusercontent.com/render/math?math=f(n) = \Omega (n^{log_{b}a+\varepsilon }) \rightarrow T(n) = \Theta (f(n)))" >.
+
+Then <img src="https://render.githubusercontent.com/render/math?math=f(n)" > is polynomically bigger than <img src="https://render.githubusercontent.com/render/math?math=n^{log_{b}a}" >.
+
+#### General Concepts
+
+- **Intuition:** The function <img src="https://render.githubusercontent.com/render/math?math=f(n" > is compared with <img src="https://render.githubusercontent.com/render/math?math=n^{log_{b}a}" > and the bigger of the functions is the solution of the recurrence. In case the two functions are equivalent, the solution is <img src="https://render.githubusercontent.com/render/math?math=n^{log_{b}a}" > times a logarithmic factor.
+
+- **Details:** In the cases 1 and 3, the function f(n) must be polynomically smaller/bigger than <img src="https://render.githubusercontent.com/render/math?math=n^{log_{b}a}" >. Besides, the function must satisfy a regularity condition.
+
+#### Example 1:
+
+```
+T(n) = 9T(n/3) + n
+
+a = 9
+b = 3
+f(n) = n
+```
+
+We will find <img src="https://render.githubusercontent.com/render/math?math=n^{log_{b}a}=n^{log_{3}9}=n^2" >.
+
+So, with <img src="https://render.githubusercontent.com/render/math?math=\varepsilon =1" >,
+
+We have <img src="https://render.githubusercontent.com/render/math?math=f(n) = O(n^{log_{b}a-\varepsilon }) = O(n^{2-1}) = O(n)" >.
+
+We can conclude that it fills the **Case 1:** <img src="https://render.githubusercontent.com/render/math?math=T(n) = \Theta (n^{log_{b}a})=\Theta (n^{2})" >.
+
+#### Example 2:
+
+```
+T(n) = 2T(n/2) + n - 1
+
+a = 2
+b = 2
+f(n) = n - 1
+```
+
+We will find <img src="https://render.githubusercontent.com/render/math?math=n^{log_{b}a}=n^{log_{2}2}=n" >.
+
+So, we have <img src="https://render.githubusercontent.com/render/math?math=f(n) = \Theta(n^{log_{b}a}) = \Theta(n)" >.
+
+We can conclude that it fills the **Case 2:** <img src="https://render.githubusercontent.com/render/math?math=T(n) = \Theta (n^{log_{b}a}*log_{.}n)=\Theta (nlog_{.}n)" >.
+
+#### Example 3:
+
+```
+T(n) = 3T(n/4) + n log n
+
+a = 3
+b = 4
+f(n) = n log n
+```
+
+We will find <img src="https://render.githubusercontent.com/render/math?math=n^{log_{b}a}=n^{log_{4}3}=n^{0,793}" >.
+
+So, with <img src="https://render.githubusercontent.com/render/math?math=\varepsilon =0,207" >,
+
+We have <img src="https://render.githubusercontent.com/render/math?math=f(n) = \Omega(n^{log_{b}a+\varepsilon }) = \Omega(n^{0,793+0,207}) = \Omega(n)" >.
+
+We can conclude that it fills the **Case 3:** <img src="https://render.githubusercontent.com/render/math?math=T(n) = \Theta (f(n))=\Theta (nlog_{.}n)" >.
