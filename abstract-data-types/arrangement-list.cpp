@@ -39,14 +39,14 @@ class List {
 			return size == 0;
 		};
 
-		virtual Item getItem(int pos) = 0;
-		virtual void setItem(Item item, int pos) = 0;
+		virtual Item getItem(int index) = 0;
+		virtual void setItem(Item item, int index) = 0;
 		virtual void insertStart(Item item) = 0;
 		virtual void insertEnd(Item item) = 0;
-		virtual void insert(Item item, int pos) = 0;
+		virtual void insert(Item item, int index) = 0;
 		virtual Item removeStart() = 0;
 		virtual Item removeEnd() = 0;
-		virtual Item remove(int pos) = 0;
+		virtual Item remove(int index) = 0;
 		virtual Item search(ItemKey c) = 0;
 		virtual void clear() = 0;
 
@@ -67,11 +67,11 @@ class ArrangementList: public List {
 		};
 
 		void insertStart(Item item) {
-			itens[0] = item;
+			insert(item, 0);
 		};
 
 		void insertEnd(Item item) {
-			itens[size - 1] = item;
+			insert(item, size - 1);
 		};
 
 		void insert(Item item, int index) {
@@ -79,17 +79,21 @@ class ArrangementList: public List {
 		};
 
 		Item removeStart() {
-			return itens[0];
+			return remove(0);
 		};
 
 		Item removeEnd() {
-			return itens[size - 1];
+			return remove(size - 1);
 		};
 
 		Item remove(int index) {
-			Item item;
+			Item tempItem = itens[index];
 
-			itens[index] = item;
+			Item newItem;
+
+			itens[index] = newItem;
+
+			return tempItem;
 		};
 
 		Item search(ItemKey selectedKey) {
