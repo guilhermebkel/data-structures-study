@@ -3,6 +3,8 @@
  
 using namespace std;
 
+typedef int Item;
+
 class Block {
 	public:
 		Block() {
@@ -10,7 +12,7 @@ class Block {
 		}
 
 	private:
-		int value;
+		Item item;
 		Block *nextBlock;
 
 	friend class LinkedStack;
@@ -27,11 +29,11 @@ class LinkedStack {
 			clear();
 		}
 
-		void add(int value) {
+		void add(Item item) {
 			Block *newBlock;
 			newBlock = new Block();
 
-			newBlock->value = value;
+			newBlock->item = item;
 			newBlock->nextBlock = topBlock;
 
 			topBlock = newBlock;
@@ -40,10 +42,10 @@ class LinkedStack {
 		}
 
 		int remove() {
-			int temporaryValue;
+			Item temporaryItem;
 			Block *temporaryBlock;
 
-			temporaryValue = topBlock->value;
+			temporaryItem = topBlock->item;
 			temporaryBlock = topBlock;
 			topBlock = topBlock->nextBlock;
 
@@ -51,7 +53,7 @@ class LinkedStack {
 
 			size--;
 
-			return temporaryValue;
+			return temporaryItem;
 		}
 
 		void clear() {
