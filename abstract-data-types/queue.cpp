@@ -35,6 +35,7 @@ class Queue {
 
 		Item dequeue() {
 			Item temporaryItem;
+
 			if (size == 0) {
 				throw "Queue Empty!";
 			}
